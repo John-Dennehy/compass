@@ -7,4 +7,10 @@ describe("Home Page", () => {
     render(<App />);
     expect(screen.getByText(/compass/i)).toBeInTheDocument();
   });
+
+  it("renders the core mission", () => {
+    render(<App />);
+    // We expect the app to describe itself as a "Community Resource" directory
+    expect(screen.getByText(/community resource/i)).toBeInTheDocument();
+  });
 });
