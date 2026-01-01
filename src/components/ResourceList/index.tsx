@@ -3,8 +3,12 @@ type ResourceListProps = {
 };
 
 export function ResourceList({ items }: ResourceListProps) {
-  if (!items || items.length === 0) {
-    return <div>No resources found.</div>;
+  if (!items) {
+    items = [];
+  }
+
+  if (items.length === 0) {
+    return <p>No resources found</p>;
   }
 
   return (
