@@ -1,5 +1,5 @@
-import { ResourceList } from "@/components/ResourceList/";
 import { createFileRoute } from "@tanstack/react-router";
+import { ResourceList } from "@/components/ResourceList/";
 
 export const Route = createFileRoute("/")({ component: App });
 
