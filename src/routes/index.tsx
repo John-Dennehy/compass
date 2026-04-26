@@ -19,7 +19,7 @@ export function App() {
 
   const audiences = useMemo(() => {
     const allAudiences = resources.flatMap((r) => r.audiences || []);
-    return [...new Set(allAudiences)];
+    return [...new Set(allAudiences)].filter((a) => a !== "all-ages");
   }, [resources]);
 
   const days = useMemo(() => {
@@ -33,7 +33,8 @@ export function App() {
     return resources.filter((resource) => {
       const audienceMatch =
         audienceFilter === "all" ||
-        resource.audiences?.includes(audienceFilter as Audience);
+        resource.audiences?.includes(audienceFilter as Audience) ||
+        resource.audiences?.includes("all-ages");
       const dayMatch =
         dayFilter === "all" ||
         resource.schedule?.some((s) => s.day === dayFilter);
