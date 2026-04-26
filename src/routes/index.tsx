@@ -1,21 +1,74 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useMemo, useState } from "react";
+import { z } from "zod";
 import { DynamicMap } from "@/components/DynamicMap";
 import { ResourceFilters } from "@/components/ResourceFilters";
 import { ResourceList } from "@/components/ResourceList";
 import { getResources } from "@/data/resources";
-import type { Audience } from "@/data/resources/types";
+import type { Audience, DayOfWeek } from "@/data/resources/types";
+
+const resourceSearchSchema = z.object({
+  audience: z.string().optional().catch("all"),
+  day: z.string().optional().catch("all"),
+  location: z.string().optional().catch(""),
+});
+
+type ResourceSearch = z.infer<typeof resourceSearchSchema>;
 
 export const Route = createFileRoute("/")({
+  validateSearch: (search) => resourceSearchSchema.parse(search),
   loader: () => getResources(),
   component: App,
 });
 
 export function App() {
   const resources = Route.useLoaderData() ?? [];
-  const [audienceFilter, setAudienceFilter] = useState("all");
-  const [dayFilter, setDayFilter] = useState("all");
-  const [locationFilter, setLocationFilter] = useState("");
+  const { audience: audienceFilter = 'all', day: dayFilter = 'all', location: locationFilter = '' } = Route.useSearch();
+  const navigate = useNavigate({ from: Route.fullPath });
+
+  // Local state for the location input to ensure it's responsive
+  const [localLocation, setLocalLocation] = useState(locationFilter);
+
+  // Sync local location with URL if URL changes (e.g. back button)
+  useEffect(() => {
+    setLocalLocation(locationFilter);
+  }, [locationFilter]);
+
+  // Debounce the URL update for location
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (localLocation !== locationFilter) {
+        navigate({
+          search: (prev) => ({ 
+            ...prev, 
+            location: localLocation || undefined 
+          }),
+          replace: true,
+        });
+      }
+    }, 300);
+    return () => clearTimeout(handler);
+  }, [localLocation, navigate, locationFilter]);
+
+  const handleAudienceChange = (value: string) => {
+    navigate({
+      search: (prev) => ({ 
+        ...prev, 
+        audience: value === "all" ? undefined : value 
+      }),
+      replace: true,
+    });
+  };
+
+  const handleDayChange = (value: string) => {
+    navigate({
+      search: (prev) => ({ 
+        ...prev, 
+        day: value === "all" ? undefined : value 
+      }),
+      replace: true,
+    });
+  };
 
   const audiences = useMemo(() => {
     const allAudiences = resources.flatMap((r) => r.audiences || []);
@@ -72,9 +125,12 @@ export function App() {
       <ResourceFilters
         audiences={audiences}
         days={days}
-        onAudienceChange={setAudienceFilter}
-        onDayChange={setDayFilter}
-        onLocationChange={setLocationFilter}
+        currentAudience={audienceFilter}
+        currentDay={dayFilter}
+        currentLocation={localLocation}
+        onAudienceChange={handleAudienceChange}
+        onDayChange={handleDayChange}
+        onLocationChange={setLocalLocation}
       />
 
       <div className="grid gap-8 lg:grid-cols-2">

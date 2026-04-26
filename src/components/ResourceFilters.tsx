@@ -11,6 +11,9 @@ import {
 type ResourceFiltersProps = {
   audiences: string[]
   days: string[]
+  currentAudience: string
+  currentDay: string
+  currentLocation: string
   onAudienceChange: (value: string) => void
   onDayChange: (value: string) => void
   onLocationChange: (value: string) => void
@@ -19,6 +22,9 @@ type ResourceFiltersProps = {
 export function ResourceFilters({
   audiences,
   days,
+  currentAudience,
+  currentDay,
+  currentLocation,
   onAudienceChange,
   onDayChange,
   onLocationChange,
@@ -33,7 +39,7 @@ export function ResourceFilters({
         >
           Audience
         </Label>
-        <Select onValueChange={onAudienceChange}>
+        <Select value={currentAudience} onValueChange={onAudienceChange}>
           <SelectTrigger id="audience-filter" className="bg-white">
             <SelectValue placeholder="All Ages" />
           </SelectTrigger>
@@ -55,7 +61,7 @@ export function ResourceFilters({
         >
           Day
         </Label>
-        <Select onValueChange={onDayChange}>
+        <Select value={currentDay} onValueChange={onDayChange}>
           <SelectTrigger id="day-filter" className="bg-white">
             <SelectValue placeholder="Any Day" />
           </SelectTrigger>
@@ -81,6 +87,7 @@ export function ResourceFilters({
           id="location-filter"
           placeholder="e.g. Staines or TW18"
           className="bg-white"
+          value={currentLocation}
           onChange={(e) => onLocationChange(e.target.value)}
         />
       </div>
