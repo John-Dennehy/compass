@@ -1,32 +1,40 @@
 import { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Trash2, CheckCircle2 } from "lucide-react";
-import type { Resource, Audience, DayOfWeek } from "@/data/resources/types";
+import type { Audience, DayOfWeek } from "@/data/resources/types";
+
 
 const resourceSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
   description: z.string().optional(),
-  category: z.enum(["playgroup", "library", "other"]),
-  audiences: z.array(z.string()).min(1, "Select at least one audience"),
+  category: z.enum(["playgroup", "support-group", "event", "volunteering", "library", "other"]),
+  audiences: z.array(z.enum([
+    "expectant-parents",
+    "babies",
+    "toddlers",
+    "pre-schoolers",
+    "parents-carers",
+    "all-ages"
+  ])).min(1, "Select at least one audience"),
   location: z.object({
     name: z.string().min(3, "Location name is required"),
     address: z.string().min(5, "Address is required"),
     postcode: z.string().optional(),
   }),
   schedule: z.array(z.object({
-    day: z.string(),
+    day: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]),
     times: z.array(z.object({
       startTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format (HH:mm)"),
       endTime: z.string().regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format (HH:mm)"),
       description: z.string().optional(),
     })).min(1, "Add at least one time slot"),
-    frequency: z.string().optional(),
+    frequency: z.enum(["weekly", "fortnightly", "monthly", "term-time", "other"]).optional(),
     notes: z.string().optional(),
   })).min(1, "Add at least one schedule entry"),
   contacts: z.array(z.object({
@@ -39,8 +47,17 @@ const resourceSchema = z.object({
     url: z.string().url("Invalid URL"),
     description: z.string().optional(),
   })).optional(),
+  cost: z.object({
+    type: z.enum(["free", "donation", "fixed-price"]),
+    amount: z.number().optional(),
+    currency: z.string().optional(),
+    description: z.string().optional(),
+  }),
+  images: z.array(z.string()).optional(),
+  isOrganiserVerified: z.boolean().default(false),
   notes: z.string().optional(),
 });
+
 
 type FormValues = z.infer<typeof resourceSchema>;
 
@@ -66,13 +83,16 @@ export function SubmissionForm({ onSubmit }: SubmissionFormProps) {
   const [error, setError] = useState<string | null>(null);
 
   const { register, control, handleSubmit, formState: { errors }, watch, setValue } = useForm<FormValues>({
-    resolver: zodResolver(resourceSchema),
+    resolver: zodResolver(resourceSchema as any),
     defaultValues: {
       category: "playgroup",
       audiences: [],
       schedule: [{ day: "Monday", times: [{ startTime: "10:00", endTime: "11:30" }] }],
       contacts: [],
       links: [],
+      cost: { type: "free", currency: "£" },
+      images: [],
+      isOrganiserVerified: false,
     },
   });
 
@@ -82,13 +102,14 @@ export function SubmissionForm({ onSubmit }: SubmissionFormProps) {
   });
 
   const selectedAudiences = watch("audiences");
+  const costType = watch("cost.type");
 
   const handleAudienceToggle = (audience: string) => {
     const current = selectedAudiences;
-    if (current.includes(audience)) {
-      setValue("audiences", current.filter(a => a !== audience));
+    if (current.includes(audience as any)) {
+      setValue("audiences", current.filter(a => a !== audience) as any);
     } else {
-      setValue("audiences", [...current, audience]);
+      setValue("audiences", [...current, audience] as any);
     }
   };
 
@@ -143,6 +164,9 @@ export function SubmissionForm({ onSubmit }: SubmissionFormProps) {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="playgroup">Playgroup</SelectItem>
+                <SelectItem value="support-group">Support Group</SelectItem>
+                <SelectItem value="event">Event</SelectItem>
+                <SelectItem value="volunteering">Volunteering Opportunity</SelectItem>
                 <SelectItem value="library">Library</SelectItem>
                 <SelectItem value="other">Other</SelectItem>
               </SelectContent>
@@ -158,6 +182,73 @@ export function SubmissionForm({ onSubmit }: SubmissionFormProps) {
             placeholder="Tell us a bit about this resource..."
           />
         </div>
+        
+        {/* Cost Information */}
+        <div className="space-y-4 rounded-lg border bg-gray-50/30 p-6">
+          <Label className="text-lg font-bold">Cost Information</Label>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label>Type</Label>
+              <Select onValueChange={(val) => setValue("cost.type", val as any)} defaultValue="free">
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="free">Free</SelectItem>
+                  <SelectItem value="donation">Donation</SelectItem>
+                  <SelectItem value="fixed-price">Fixed Price</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {costType === "fixed-price" && (
+              <div className="space-y-2">
+                <Label>Amount</Label>
+                <div className="flex gap-2">
+                  <Input {...register("cost.currency")} className="w-16" placeholder="£" />
+                  <Input 
+                    type="number" 
+                    step="0.01" 
+                    {...register("cost.amount", { valueAsNumber: true })} 
+                    placeholder="0.00" 
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="space-y-2">
+            <Label>Cost Description (Optional)</Label>
+            <Input {...register("cost.description")} placeholder="e.g. £5 per family, first session free" />
+          </div>
+        </div>
+
+        {/* Images */}
+        <div className="space-y-2">
+          <Label htmlFor="image-url">Image URL (Optional)</Label>
+          <Input 
+            id="image-url" 
+            placeholder="https://example.com/image.jpg" 
+            onChange={(e) => {
+              if (e.target.value) {
+                setValue("images", [e.target.value]);
+              } else {
+                setValue("images", []);
+              }
+            }}
+          />
+        </div>
+
+        {/* Organiser Verification Status */}
+        <div className="flex items-center space-x-2 rounded-lg border border-blue-100 bg-blue-50/30 p-4">
+          <input 
+            type="checkbox" 
+            id="isOrganiserVerified" 
+            {...register("isOrganiserVerified")}
+            className="h-4 w-4 rounded border-gray-300 text-[var(--compass-primary)] focus:ring-[var(--compass-primary)]"
+          />
+          <Label htmlFor="isOrganiserVerified" className="text-sm font-medium text-blue-900">
+            I am the organiser of this resource and am submitting it officially.
+          </Label>
+        </div>
       </section>
 
       {/* Audiences */}
@@ -168,9 +259,9 @@ export function SubmissionForm({ onSubmit }: SubmissionFormProps) {
             type="button"
             onClick={() => {
               if (selectedAudiences.length === AUDIENCES.length) {
-                setValue("audiences", []);
+                setValue("audiences", [] as any);
               } else {
-                setValue("audiences", [...AUDIENCES]);
+                setValue("audiences", [...AUDIENCES] as any);
               }
             }}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
@@ -249,7 +340,7 @@ export function SubmissionForm({ onSubmit }: SubmissionFormProps) {
               <div className="grid gap-6 md:grid-cols-3">
                 <div className="space-y-2">
                   <Label>Day</Label>
-                  <Select onValueChange={(val) => setValue(`schedule.${index}.day`, val)} defaultValue={field.day}>
+                  <Select onValueChange={(val) => setValue(`schedule.${index}.day`, val as any)} defaultValue={field.day}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -270,7 +361,7 @@ export function SubmissionForm({ onSubmit }: SubmissionFormProps) {
             </div>
           ))}
         </div>
-        {errors.schedule && <p className="text-sm text-red-500">{errors.schedule.message}</p>}
+        {errors.schedule && <p className="text-sm text-red-500">{(errors.schedule as any).message}</p>}
       </section>
 
       {/* Error Message */}
@@ -292,3 +383,4 @@ export function SubmissionForm({ onSubmit }: SubmissionFormProps) {
     </form>
   );
 }
+

@@ -21,6 +21,7 @@ const sampleResources: Resource[] = [
       },
     ],
     links: [{ type: "facebook", url: "https://www.facebook.com/NCTSAE" }],
+    cost: { type: 'free' },
   },
   {
     id: "playgroup-5",
@@ -46,8 +47,10 @@ const sampleResources: Resource[] = [
         url: "https://www.facebook.com/groups/270980883516118",
       },
     ],
+    cost: { type: 'free' },
   },
 ];
+
 
 describe("ResourceList", () => {
   it("renders a list of resource cards with complex details", () => {
@@ -57,7 +60,8 @@ describe("ResourceList", () => {
     const firstHeading = screen.getByRole("heading", {
       name: "NCT Bumps & Babes",
     });
-    const firstItem = firstHeading.closest("div.flex.flex-col"); // The Card element
+    const firstItem = firstHeading.closest("div.flex.flex-col") as HTMLElement; // The Card element
+
 
     // Explicit Guard: If null, fail the test immediately
     if (!firstItem)
@@ -66,6 +70,7 @@ describe("ResourceList", () => {
     expect(
       within(firstItem).getByText(/Expectant parents, Babies/i),
     ).toBeInTheDocument();
+
     expect(
       within(firstItem).getByText("Monday: 10:30 - 11:45"), // Updated format
     ).toBeInTheDocument();
@@ -74,7 +79,8 @@ describe("ResourceList", () => {
     const secondHeading = screen.getByRole("heading", {
       name: "Stanwell Messy Play",
     });
-    const secondItem = secondHeading.closest("div.flex.flex-col"); // The Card element
+    const secondItem = secondHeading.closest("div.flex.flex-col") as HTMLElement; // The Card element
+
 
     // Explicit Guard
     if (!secondItem)

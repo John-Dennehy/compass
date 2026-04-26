@@ -14,7 +14,8 @@ const config = defineConfig({
     viteTsConfigPaths({
       projects: ["./tsconfig.json"],
     }),
-    tailwindcss("./tailwind.config.js"),
+    tailwindcss(),
+
     tanstackStart(),
     viteReact(),
   ],

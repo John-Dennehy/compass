@@ -5,15 +5,16 @@ import { DynamicMap } from "@/components/DynamicMap";
 import { ResourceFilters } from "@/components/ResourceFilters";
 import { ResourceList } from "@/components/ResourceList";
 import { getResources } from "@/data/resources";
-import type { Audience, DayOfWeek } from "@/data/resources/types";
+import type { Audience } from "@/data/resources/types";
 
 const resourceSearchSchema = z.object({
   audience: z.string().optional().catch("all"),
   day: z.string().optional().catch("all"),
   location: z.string().optional().catch(""),
+  category: z.string().optional().catch("all"),
+  cost: z.string().optional().catch("all"),
 });
 
-type ResourceSearch = z.infer<typeof resourceSearchSchema>;
 
 export const Route = createFileRoute("/")({
   validateSearch: (search) => resourceSearchSchema.parse(search),
@@ -23,7 +24,13 @@ export const Route = createFileRoute("/")({
 
 export function App() {
   const resources = Route.useLoaderData() ?? [];
-  const { audience: audienceFilter = 'all', day: dayFilter = 'all', location: locationFilter = '' } = Route.useSearch();
+  const { 
+    audience: audienceFilter = 'all', 
+    day: dayFilter = 'all', 
+    location: locationFilter = '',
+    category: categoryFilter = 'all',
+    cost: costFilter = 'all'
+  } = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
 
   // Local state for the location input to ensure it's responsive
@@ -70,6 +77,26 @@ export function App() {
     });
   };
 
+  const handleCategoryChange = (value: string) => {
+    navigate({
+      search: (prev) => ({ 
+        ...prev, 
+        category: value === "all" ? undefined : value 
+      }),
+      replace: true,
+    });
+  };
+
+  const handleCostChange = (value: string) => {
+    navigate({
+      search: (prev) => ({ 
+        ...prev, 
+        cost: value === "all" ? undefined : value 
+      }),
+      replace: true,
+    });
+  };
+
   const audiences = useMemo(() => {
     const allAudiences = resources.flatMap((r) => r.audiences || []);
     return [...new Set(allAudiences)].filter((a) => a !== "all-ages");
@@ -80,6 +107,11 @@ export function App() {
       (r) => r.schedule?.map((s) => s.day) || [],
     );
     return [...new Set(allDays)];
+  }, [resources]);
+
+  const categories = useMemo(() => {
+    const allCategories = resources.map((r) => r.category);
+    return [...new Set(allCategories)];
   }, [resources]);
 
   const filteredResources = useMemo(() => {
@@ -99,10 +131,14 @@ export function App() {
         resource.location.name
           .toLowerCase()
           .includes(locationFilter.toLowerCase());
+      const categoryMatch =
+        categoryFilter === "all" || resource.category === categoryFilter;
+      const costMatch =
+        costFilter === "all" || resource.cost?.type === costFilter;
 
-      return audienceMatch && dayMatch && locationMatch;
+      return audienceMatch && dayMatch && locationMatch && categoryMatch && costMatch;
     });
-  }, [resources, audienceFilter, dayFilter, locationFilter]);
+  }, [resources, audienceFilter, dayFilter, locationFilter, categoryFilter, costFilter]);
 
   return (
     <div className="min-h-screen px-4 py-8 md:px-8" style={{ backgroundColor: 'var(--compass-surface)' }}>
@@ -125,12 +161,17 @@ export function App() {
       <ResourceFilters
         audiences={audiences}
         days={days}
+        categories={categories}
         currentAudience={audienceFilter}
         currentDay={dayFilter}
         currentLocation={localLocation}
+        currentCategory={categoryFilter}
+        currentCost={costFilter}
         onAudienceChange={handleAudienceChange}
         onDayChange={handleDayChange}
         onLocationChange={setLocalLocation}
+        onCategoryChange={handleCategoryChange}
+        onCostChange={handleCostChange}
       />
 
       <div className="grid gap-8 lg:grid-cols-2">
@@ -145,3 +186,4 @@ export function App() {
     </div>
   );
 }
+

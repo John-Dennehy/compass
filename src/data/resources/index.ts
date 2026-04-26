@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { db } from "@/lib/db";
 import { resources } from "@/lib/db/schema";
-import { eq, and } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import type { Resource } from "./types";
 
 export async function fetchResources(): Promise<Resource[]> {
@@ -20,6 +20,9 @@ export async function fetchResources(): Promise<Resource[]> {
     schedule: r.schedule as Resource['schedule'],
     contacts: r.contacts as Resource['contacts'],
     links: r.links as Resource['links'],
+    cost: r.cost as Resource['cost'],
+    images: r.images as Resource['images'],
+    isOrganiserVerified: r.isOrganiserVerified,
   })) as Resource[];
 }
 
@@ -42,6 +45,9 @@ export async function fetchPendingResources(): Promise<Resource[]> {
     schedule: r.schedule as Resource['schedule'],
     contacts: r.contacts as Resource['contacts'],
     links: r.links as Resource['links'],
+    cost: r.cost as Resource['cost'],
+    images: r.images as Resource['images'],
+    isOrganiserVerified: r.isOrganiserVerified,
   })) as Resource[];
 }
 
@@ -51,7 +57,9 @@ export const getPendingResources = createServerFn({
 
 export const updateResourceStatus = createServerFn({
   method: "POST",
-}).handler(async ({ data }: { data: { id: string; status: 'approved' | 'rejected' } }) => {
+})
+  .inputValidator((d: { id: string; status: 'approved' | 'rejected' }) => d)
+  .handler(async ({ data }) => {
     try {
       await db.update(resources)
         .set({ status: data.status, updatedAt: new Date() })
@@ -65,7 +73,9 @@ export const updateResourceStatus = createServerFn({
 
 export const submitResource = createServerFn({
   method: "POST",
-}).handler(async ({ data }: { data: Omit<Resource, 'id'> }) => {
+})
+  .inputValidator((d: Omit<Resource, 'id'>) => d)
+  .handler(async ({ data }) => {
     try {
       await db.insert(resources).values({
         name: data.name,
@@ -77,6 +87,9 @@ export const submitResource = createServerFn({
         schedule: data.schedule,
         contacts: data.contacts,
         links: data.links,
+        cost: data.cost,
+        images: data.images,
+        isOrganiserVerified: data.isOrganiserVerified,
         notes: data.notes,
         status: 'pending',
       });
@@ -86,3 +99,5 @@ export const submitResource = createServerFn({
       return { success: false, error: "Failed to submit resource" };
     }
   });
+
+

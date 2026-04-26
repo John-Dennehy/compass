@@ -5,7 +5,16 @@ export type LinkType = 'website' | 'facebook' | 'instagram' | 'twitter' | 'other
 export type Frequency = 'weekly' | 'fortnightly' | 'monthly' | 'term-time' | 'other';
 export type Audience = 'expectant-parents' | 'babies' | 'toddlers' | 'pre-schoolers' | 'all-ages' | 'parents-carers';
 
-export type ResourceCategory = 'playgroup' | 'library' | 'other';
+export type ResourceCategory = 'playgroup' | 'support-group' | 'event' | 'volunteering' | 'library' | 'other';
+
+export type CostType = 'free' | 'donation' | 'fixed-price';
+
+export type Cost = {
+  type: CostType;
+  amount?: number;
+  currency?: string;
+  description?: string;
+};
 
 export type Contact = {
   method: ContactMethod;
@@ -15,7 +24,7 @@ export type Contact = {
 
 export type Link = {
   type: LinkType;
-  url:string;
+  url: string;
   description?: string;
 };
 
@@ -51,5 +60,9 @@ export type Resource = {
   schedule: Schedule[];
   contacts?: Contact[];
   links?: Link[];
+  cost?: Cost;
+  images?: string[];
+  isOrganiserVerified?: boolean;
   notes?: string;
 };
+
