@@ -50,13 +50,13 @@ export default function Header() {
           >
             About
           </a>
-          <a
-            href="#"
+          <Link
+            to="/submit"
             className="inline-flex h-10 items-center justify-center rounded-lg px-5 text-sm font-bold text-white transition-transform hover:scale-105 active:scale-95"
             style={{ backgroundColor: "var(--compass-primary)" }}
           >
             Add Resource
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -94,14 +94,14 @@ export default function Header() {
             >
               About
             </a>
-            <a
-              href="#"
+            <Link
+              to="/submit"
               className="flex h-12 items-center justify-center rounded-lg font-bold text-white"
               style={{ backgroundColor: "var(--compass-primary)" }}
               onClick={() => setIsMenuOpen(false)}
             >
               Add Resource
-            </a>
+            </Link>
           </nav>
         </div>
       )}
