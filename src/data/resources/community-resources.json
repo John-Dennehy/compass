@@ -1,0 +1,582 @@
+[
+  {
+    "id": "playgroup-1",
+    "name": "NCT Bumps & Babes",
+    "category": "playgroup",
+    "audiences": ["expectant-parents", "babies"],
+    "location": {
+      "name": "Staines Congregational Church Hall",
+      "address": "Stainash Crescent, Staines TW18 1AY",
+      "latitude": 51.437,
+      "longitude": -0.501
+    },
+    "schedule": [
+      {
+        "day": "Monday",
+        "times": [{ "startTime": "10:30", "endTime": "11:45" }]
+      }
+    ],
+    "links": [{ "type": "facebook", "url": "https://www.facebook.com/NCTSAE" }]
+  },
+  {
+    "id": "playgroup-2",
+    "name": "Butterflies Toddler Group",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Salvation Army",
+      "address": "Woodthorpe Road, Ashford TW15 3JY",
+      "latitude": 51.437,
+      "longitude": -0.473
+    },
+    "schedule": [
+      {
+        "day": "Monday",
+        "times": [{ "startTime": "10:00", "endTime": "12:00" }]
+      },
+      {
+        "day": "Wednesday",
+        "times": [{ "startTime": "10:00", "endTime": "12:00" }]
+      },
+      {
+        "day": "Thursday",
+        "times": [{ "startTime": "10:00", "endTime": "12:00" }]
+      }
+    ],
+    "links": [
+      {
+        "type": "facebook",
+        "url": "https://www.facebook.com/groups/butterfliestoddlersgroup"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-3",
+    "name": "Little Owls Playgroup",
+    "category": "playgroup",
+    "audiences": ["pre-schoolers"],
+    "location": {
+      "name": "Stanwell Village Hall",
+      "address": "High Street, Stanwell TW19 7JR",
+      "latitude": 51.442,
+      "longitude": -0.505
+    },
+    "schedule": [
+      {
+        "day": "Monday",
+        "times": [{ "startTime": "09:30", "endTime": "11:30" }]
+      }
+    ],
+    "links": [
+      { "type": "facebook", "url": "https://www.facebook.com/stanwellevents" }
+    ]
+  },
+  {
+    "id": "library-1",
+    "name": "Rhymetime",
+    "category": "library",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Staines Library",
+      "address": "Friends Walk, Staines-upon-Thames TW18 4PG",
+      "latitude": 51.433,
+      "longitude": -0.512
+    },
+    "schedule": [
+      {
+        "day": "Monday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      },
+      {
+        "day": "Wednesday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      },
+      {
+        "day": "Friday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      },
+      {
+        "day": "Saturday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      }
+    ]
+  },
+  {
+    "id": "playgroup-4",
+    "name": "Buggies and Bikes Toddler Group",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Staines Congregational Church Hall",
+      "address": "Stainash Crescent, Staines TW18 1AY",
+      "latitude": 51.437,
+      "longitude": -0.501
+    },
+    "schedule": [
+      {
+        "day": "Tuesday",
+        "times": [{ "startTime": "09:30", "endTime": "11:30" }],
+        "frequency": "term-time"
+      },
+      {
+        "day": "Thursday",
+        "times": [{ "startTime": "09:30", "endTime": "11:30" }],
+        "frequency": "term-time"
+      }
+    ],
+    "links": [
+      {
+        "type": "facebook",
+        "url": "https://www.facebook.com/groups/899487290073727"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-5",
+    "name": "Stanwell Messy Play",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Stanwell Village Hall",
+      "address": "High St, Stanwell, Staines TW19 7JR",
+      "latitude": 51.442,
+      "longitude": -0.505
+    },
+    "schedule": [
+      {
+        "day": "Tuesday",
+        "times": [{ "startTime": "09:30", "endTime": "11:30" }]
+      }
+    ],
+    "contacts": [
+      { "method": "text", "value": "07739 358186", "description": "Victoria" }
+    ],
+    "links": [
+      {
+        "type": "facebook",
+        "url": "https://www.facebook.com/groups/270980883516118"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-6",
+    "name": "ABC Coffee & Play",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Ashford Baptist Church",
+      "address": "Church Road, Ashford TW15 2TT",
+      "latitude": 51.433,
+      "longitude": -0.477
+    },
+    "schedule": [
+      {
+        "day": "Tuesday",
+        "times": [{ "startTime": "09:00", "endTime": "11:00" }],
+        "frequency": "term-time"
+      }
+    ],
+    "links": [
+      { "type": "facebook", "url": "https://www.facebook.com/totsabc/" }
+    ]
+  },
+  {
+    "id": "playgroup-7",
+    "name": "NCT Parent Space @Bumps & Babes",
+    "category": "playgroup",
+    "audiences": ["expectant-parents", "babies", "toddlers"],
+    "location": {
+      "name": "Open Door Church",
+      "address": "Corner of Green St & Rooksmead Road, Lower Sunbury TW16 6QQ",
+      "latitude": 51.413,
+      "longitude": -0.424
+    },
+    "schedule": [
+      {
+        "day": "Tuesday",
+        "times": [{ "startTime": "10:30", "endTime": "12:00" }]
+      }
+    ],
+    "links": [
+      {
+        "type": "facebook",
+        "url": "https://www.facebook.com/NCTSunburySheppertonandChertsey"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-8",
+    "name": "Wombles Stay and Play",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Stanwell Moor Village Hall",
+      "address": "Horton Road TW19 6AQ",
+      "latitude": 51.459,
+      "longitude": -0.508
+    },
+    "schedule": [
+      {
+        "day": "Tuesday",
+        "times": [{ "startTime": "09:30", "endTime": "11:30" }]
+      }
+    ],
+    "links": [
+      {
+        "type": "facebook",
+        "url": "https://www.facebook.com/groups/25326865356901771"
+      }
+    ]
+  },
+  {
+    "id": "library-2",
+    "name": "Rhymetime",
+    "category": "library",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Shepperton Library",
+      "address": "High St, Shepperton TW17 9AU",
+      "latitude": 51.393,
+      "longitude": -0.45
+    },
+    "schedule": [
+      {
+        "day": "Tuesday",
+        "times": [{ "startTime": "11:00", "endTime": "11:30" }]
+      }
+    ]
+  },
+  {
+    "id": "playgroup-9",
+    "name": "Our Lady of the Rosary Church Playgroup",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Our Lady of the Rosary Church",
+      "address": "59 Gresham Rd, Staines TW18 2BD",
+      "latitude": 51.432,
+      "longitude": -0.518
+    },
+    "schedule": [
+      {
+        "day": "Wednesday",
+        "times": [{ "startTime": "09:45", "endTime": "11:30" }],
+        "frequency": "term-time"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-10",
+    "name": "Footprints Group",
+    "category": "playgroup",
+    "audiences": ["parents-carers", "babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "St Peter's Church Hall",
+      "address": "Laleham Road, Staines TW18 2DX",
+      "latitude": 51.428,
+      "longitude": -0.52
+    },
+    "schedule": [
+      {
+        "day": "Wednesday",
+        "times": [{ "startTime": "11:00", "endTime": "12:30" }]
+      }
+    ],
+    "links": [
+      {
+        "type": "website",
+        "url": "https://www.stmaryandstpeterstaines.co.uk/footprints-toddler-group.html"
+      }
+    ],
+    "notes": "No need to book"
+  },
+  {
+    "id": "library-3",
+    "name": "Rhymetime",
+    "category": "library",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Ashford Library",
+      "address": "Church Rd, Ashford TW15 2XB",
+      "latitude": 51.432,
+      "longitude": -0.47
+    },
+    "schedule": [
+      {
+        "day": "Wednesday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      },
+      {
+        "day": "Friday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      },
+      {
+        "day": "Saturday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      }
+    ]
+  },
+  {
+    "id": "playgroup-11",
+    "name": "Seedlings",
+    "category": "playgroup",
+    "audiences": ["pre-schoolers"],
+    "location": {
+      "name": "Staines Baptist Church",
+      "address": "16 Hale Street, Staines TW18 4UW",
+      "latitude": 51.434,
+      "longitude": -0.512
+    },
+    "schedule": [
+      {
+        "day": "Thursday",
+        "times": [{ "startTime": "10:00", "endTime": "12:00" }]
+      }
+    ],
+    "links": [
+      { "type": "facebook", "url": "www.facebook.com/Seedlings Staines" }
+    ]
+  },
+  {
+    "id": "playgroup-12",
+    "name": "Littletots",
+    "category": "playgroup",
+    "audiences": ["pre-schoolers"],
+    "location": {
+      "name": "The Old School Building",
+      "address": "New Road, Littleton, Shepperton TW17 0QQ",
+      "latitude": 51.403,
+      "longitude": -0.468
+    },
+    "schedule": [
+      {
+        "day": "Thursday",
+        "times": [{ "startTime": "09:30", "endTime": "11:30" }]
+      }
+    ]
+  },
+  {
+    "id": "playgroup-13",
+    "name": "The Haven Stay & Play",
+    "category": "playgroup",
+    "audiences": ["pre-schoolers", "parents-carers"],
+    "location": {
+      "name": "St Saviours Church",
+      "address": "Vicarage Rd, Sunbury-on-Thames TW16 7TP",
+      "latitude": 51.417,
+      "longitude": -0.42
+    },
+    "schedule": [
+      {
+        "day": "Thursday",
+        "times": [{ "startTime": "10:00", "endTime": "11:45" }]
+      }
+    ],
+    "links": [{ "type": "website", "url": "https://www.stsavs.org/foodbank" }],
+    "notes": "Runs alongside the food bank"
+  },
+  {
+    "id": "playgroup-14",
+    "name": "NCT Parent Space @Bumps & Babes",
+    "category": "playgroup",
+    "audiences": ["expectant-parents", "babies", "toddlers"],
+    "location": {
+      "name": "Shepperton Village Hall",
+      "address": "High Street, Shepperton TW17 9AU",
+      "latitude": 51.389,
+      "longitude": -0.449
+    },
+    "schedule": [
+      {
+        "day": "Thursday",
+        "times": [{ "startTime": "13:15", "endTime": "14:45" }]
+      }
+    ],
+    "links": [
+      {
+        "type": "facebook",
+        "url": "https://www.facebook.com/NCTSunburySheppertonandChertsey"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-15",
+    "name": "Jingle Tots",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Salvation Army",
+      "address": "Woodthorpe Road, Ashford TW15 3JY",
+      "latitude": 51.437,
+      "longitude": -0.473
+    },
+    "schedule": [
+      {
+        "day": "Friday",
+        "times": [
+          { "startTime": "09:45", "endTime": "10:30", "description": "babies" },
+          {
+            "startTime": "11:15",
+            "endTime": "12:00",
+            "description": "confident movers"
+          }
+        ]
+      }
+    ],
+    "links": [
+      {
+        "type": "facebook",
+        "url": "https://www.facebook.com/groups/246577238709883"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-16",
+    "name": "Biscuit Playgroup",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Sunbury Methodist Church",
+      "address": "Staines Road East, Sunbury on Thames TW16 5AD",
+      "latitude": 51.416,
+      "longitude": -0.413
+    },
+    "schedule": [
+      {
+        "day": "Friday",
+        "times": [{ "startTime": "09:30", "endTime": "11:30" }]
+      }
+    ],
+    "contacts": [{ "method": "text", "value": "07944 111479" }]
+  },
+  {
+    "id": "playgroup-17",
+    "name": "Laleham Parent & Toddler Group",
+    "category": "playgroup",
+    "audiences": ["pre-schoolers"],
+    "location": {
+      "name": "The Youth Centre",
+      "address": "The Broadway, Laleham TW18 1RZ",
+      "latitude": 51.418,
+      "longitude": -0.49
+    },
+    "schedule": [
+      {
+        "day": "Friday",
+        "times": [{ "startTime": "13:30", "endTime": "15:00" }]
+      }
+    ],
+    "links": [
+      {
+        "type": "website",
+        "url": "https://www.allsaintslaleham.org.uk/parent-and-toddlers"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-18",
+    "name": "Little Roots Toddler Group",
+    "category": "playgroup",
+    "audiences": ["toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Staines Preparatory School & Nursery",
+      "address": "3-5 Gresham Rd, Staines TW18 2BT",
+      "latitude": 51.432,
+      "longitude": -0.518
+    },
+    "schedule": [
+      {
+        "day": "Friday",
+        "times": [{ "startTime": "09:00", "endTime": "10:00" }]
+      }
+    ],
+    "links": [
+      {
+        "type": "website",
+        "url": "https://www.stainesprep.co.uk/community/little-roots-playgroup/"
+      }
+    ]
+  },
+  {
+    "id": "playgroup-19",
+    "name": "Minnows Toddler Group",
+    "category": "playgroup",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Staines Methodist Church",
+      "address": "Thames St, Staines TW18 4SD",
+      "latitude": 51.433,
+      "longitude": -0.513
+    },
+    "schedule": [
+      {
+        "day": "Friday",
+        "times": [{ "startTime": "10:00", "endTime": "11:30" }]
+      }
+    ],
+    "links": [
+      {
+        "type": "website",
+        "url": "https://www.stainesmethodist.org.uk/minnows-toddler-group"
+      }
+    ]
+  },
+  {
+    "id": "library-4",
+    "name": "Rhymetime",
+    "category": "library",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Stanwell Library",
+      "address": "Hadrian Way, Stanwell TW19 7HE",
+      "latitude": 51.443,
+      "longitude": -0.505
+    },
+    "schedule": [
+      {
+        "day": "Friday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      }
+    ]
+  },
+  {
+    "id": "library-5",
+    "name": "Rhymetime",
+    "category": "library",
+    "audiences": ["babies", "toddlers", "pre-schoolers"],
+    "location": {
+      "name": "Sunbury Library",
+      "address": "The Parade, Sunbury-on-Thames TW16 7AB",
+      "latitude": 51.419,
+      "longitude": -0.412
+    },
+    "schedule": [
+      {
+        "day": "Friday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      },
+      {
+        "day": "Saturday",
+        "times": [{ "startTime": "10:30", "endTime": "11:00" }]
+      }
+    ]
+  },
+  {
+    "id": "library-6",
+    "name": "Storytime",
+    "category": "library",
+    "audiences": ["all-ages"],
+    "location": {
+      "name": "Staines Library",
+      "address": "Friends Walk, Staines-upon-Thames TW18 4PG",
+      "latitude": 51.433,
+      "longitude": -0.512
+    },
+    "schedule": [
+      {
+        "day": "Saturday",
+        "times": [{ "startTime": "14:30" }]
+      }
+    ]
+  }
+]
