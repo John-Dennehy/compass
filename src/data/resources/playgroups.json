@@ -1,0 +1,247 @@
+{
+  "title": "Playgroups in Spelthorne",
+  "description": "Playgroups provide children of pre-school age a chance to socialise with other children. They usually have a range of toys and may offer other activities such as crafts, singing, storytime and snacktime.",
+  "meta": {
+    "source_date": "September 2025",
+    "note": "Some groups stop running during school holidays - we recommend checking before turning up."
+  },
+  "days": [
+    {
+      "day": "Monday",
+      "events": [
+        {
+          "name": "NCT Bumps & Babes",
+          "audience": "Suitable for expectant parents and under 1s",
+          "time": "10:30am-11:45am",
+          "location": "Staines Congregational Church Hall, Stainash Crescent, Staines TW18 1AY",
+          "info_url": "https://www.facebook.com/NCTSAE"
+        },
+        {
+          "name": "Butterflies Toddler Group",
+          "audience": "Suitable for 0-4 years",
+          "time": "10am-12pm",
+          "location": "Salvation Army, Woodthorpe Road, Ashford TW15 3JY",
+          "info_url": "https://www.facebook.com/groups/butterfliestoddlersgroup"
+        },
+        {
+          "name": "Little Owls Playgroup",
+          "audience": "Pre-schoolers",
+          "time": "9:30am-11:30am",
+          "location": "Stanwell Village Hall, High Street, Stanwell TW19 7JR",
+          "info_url": "https://www.facebook.com/stanwellevents"
+        },
+        {
+          "name": "Rhymetime",
+          "audience": "Suitable for 0-5 years",
+          "time": "10:30am-11am",
+          "location": "Staines Library",
+          "info_url": null
+        }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "events": [
+        {
+          "name": "Buggies and Bikes Toddler Group",
+          "audience": "Suitable for 0-4 years",
+          "time": "9:30am-11:30am (term time only)",
+          "location": "Staines Congregational Church Hall, Stainash Crescent, Staines TW18 1AY",
+          "info_url": "https://www.facebook.com/groups/899487290073727"
+        },
+        {
+          "name": "Stanwell Messy Play",
+          "audience": "Suitable for babies and toddlers under 5 years",
+          "time": "9:30am-11:30am",
+          "location": "Stanwell Village Hall, High St, Stanwell, Staines TW19 7JR",
+          "info_url": "https://www.facebook.com/groups/270980883516118",
+          "contact": "Text Victoria on 07739 358186"
+        },
+        {
+          "name": "ABC Coffee & Play",
+          "audience": "Under 5s",
+          "time": "9am-11am (term time only)",
+          "location": "Ashford Baptist Church, Church Road, Ashford TW15 2TT",
+          "info_url": "https://www.facebook.com/totsabc/"
+        },
+        {
+          "name": "NCT Parent Space @Bumps & Babes",
+          "audience": "Suitable for expectant parents and under 2s",
+          "time": "10:30am-12pm",
+          "location": "Open Door Church, Corner of Green St & Rooksmead Road, Lower Sunbury TW16 6QQ",
+          "info_url": "https://www.facebook.com/NCTSunburySheppertonandChertsey"
+        },
+        {
+          "name": "Wombles Stay and Play",
+          "audience": "Suitable for 0-5 years",
+          "time": "9:30am-11:30am",
+          "location": "Stanwell Moor Village Hall, Horton Road TW19 6AQ",
+          "info_url": "https://www.facebook.com/groups/25326865356901771"
+        },
+        {
+          "name": "Rhymetime",
+          "audience": "Suitable for 0-5 years",
+          "time": "11am-11:30am",
+          "location": "Shepperton Library",
+          "info_url": null
+        }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "events": [
+        {
+          "name": "Butterflies Toddler Group",
+          "audience": "Suitable for 0-4 years",
+          "time": "10am-12pm",
+          "location": "Salvation Army, Woodthorpe Road, Ashford TW15 3JY",
+          "info_url": "https://www.facebook.com/groups/butterfliestoddlersgroup"
+        },
+        {
+          "name": "Our Lady of the Rosary Church Playgroup",
+          "audience": "Suitable for 0-5 years",
+          "time": "9.45am-11.30am (term time only)",
+          "location": "Our Lady of the Rosary Church, 59 Gresham Rd, Staines TW18 2BD",
+          "info_url": null
+        },
+        {
+          "name": "Footprints Group",
+          "audience": "Free to all parents/carers with under 5s",
+          "time": "11am-12:30pm",
+          "location": "St Peter's Church Hall, Laleham Road, Staines TW18 2DX",
+          "info_url": "https://www.stmaryandstpeterstaines.co.uk/footprints-toddler-group.html",
+          "booking_note": "No need to book"
+        },
+        {
+          "name": "Rhymetime",
+          "audience": "Suitable for 0-5 years",
+          "time": "10:30am-11am",
+          "location": "Staines Library & Ashford Library",
+          "info_url": null
+        }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "events": [
+        {
+          "name": "Buggies and Bikes Toddler Group",
+          "audience": "Suitable for 0-4 years",
+          "time": "9:30am-11:30am (term time only)",
+          "location": "Staines Congregational Church Hall, Stainash Crescent, Staines TW18 1AY",
+          "info_url": "https://www.facebook.com/groups/899487290073727"
+        },
+        {
+          "name": "Butterflies Toddler Group",
+          "audience": "Suitable for 0-4 years",
+          "time": "10am-12pm",
+          "location": "Salvation Army, Woodthorpe Road, Ashford TW15 3JY",
+          "info_url": "https://www.facebook.com/groups/butterfliestoddlersgroup"
+        },
+        {
+          "name": "Seedlings",
+          "audience": "Pre-schoolers",
+          "time": "10am-12pm",
+          "location": "Staines Baptist Church, 16 Hale Street, Staines TW18 4UW",
+          "info_url": "www.facebook.com/Seedlings Staines"
+        },
+        {
+          "name": "Littletots",
+          "audience": "Pre-schoolers",
+          "time": "9:30am-11:30am",
+          "location": "The Old School Building, New Road, Littleton, Shepperton TW17 0QQ",
+          "info_url": null
+        },
+        {
+          "name": "The Haven Stay & Play",
+          "audience": "Pre-school age children and their parents/carers",
+          "time": "10am-11:45am",
+          "location": "St Saviours Church, Vicarage Rd, Sunbury-on-Thames TW16 7TP",
+          "info_url": "https://www.stsavs.org/foodbank",
+          "note": "Runs alongside the food bank"
+        },
+        {
+          "name": "NCT Parent Space @Bumps & Babes",
+          "audience": "Suitable for expectant parents and under 2s",
+          "time": "1:15pm-2:45pm",
+          "location": "Shepperton Village Hall, High Street, Shepperton TW17 9AU",
+          "info_url": "https://www.facebook.com/NCTSunburySheppertonandChertsey"
+        }
+      ]
+    },
+    {
+      "day": "Friday",
+      "events": [
+        {
+          "name": "Jingle Tots",
+          "audience": "Suitable for 0-4 years",
+          "time": "9:45am-10:30am (babies) & 11:15am-12pm (confident movers)",
+          "location": "Salvation Army, Woodthorpe Road, Ashford TW15 3JY",
+          "info_url": "https://www.facebook.com/groups/246577238709883"
+        },
+        {
+          "name": "Biscuit Playgroup",
+          "audience": "Under 5s",
+          "time": "9:30am-11:30am",
+          "location": "Sunbury Methodist Church, Staines Road East, Sunbury on Thames TW16 5AD",
+          "contact": "Text 07944 111479",
+          "info_url": null
+        },
+        {
+          "name": "Laleham Parent & Toddler Group",
+          "audience": "Pre-school children",
+          "time": "1:30pm-3pm",
+          "location": "The Youth Centre, The Broadway, Laleham TW18 1RZ",
+          "info_url": "https://www.allsaintslaleham.org.uk/parent-and-toddlers"
+        },
+        {
+          "name": "Little Roots Toddler Group",
+          "audience": "Age 2-5 years",
+          "time": "9am-10am",
+          "location": "Staines Preparatory School & Nursery, 3-5 Gresham Rd, Staines TW18 2BT",
+          "info_url": "https://www.stainesprep.co.uk/community/little-roots-playgroup/"
+        },
+        {
+          "name": "Minnows Toddler Group",
+          "audience": "0-5 years",
+          "time": "10am-11:30am",
+          "location": "Staines Methodist Church, Thames St, Staines TW18 4SD",
+          "info_url": "https://www.stainesmethodist.org.uk/minnows-toddler-group"
+        },
+        {
+          "name": "Rhymetime",
+          "audience": "Suitable for 0-5 years",
+          "time": "10:30am-11am",
+          "location": "Ashford Library, Staines Library, Stanwell Library, Sunbury Library",
+          "info_url": null
+        }
+      ]
+    },
+    {
+      "day": "Saturday",
+      "events": [
+        {
+          "name": "Rhymetime",
+          "audience": "Suitable for 0-5 years",
+          "time": "10:30am-11am",
+          "location": "Ashford Library & Staines Library",
+          "info_url": null
+        },
+        {
+          "name": "Rhymetime",
+          "audience": "Suitable for 0-5 years",
+          "time": "10:30am-11am",
+          "location": "Sunbury Library",
+          "info_url": null
+        },
+        {
+          "name": "Storytime",
+          "audience": "All families",
+          "time": "2:30pm",
+          "location": "Staines Library",
+          "info_url": null
+        }
+      ]
+    }
+  ]
+}

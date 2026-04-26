@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "title": "Community Food Bank",
+    "category": "Food Assistance",
+    "description": "Provides free groceries and meals to families in need within the local community.",
+    "url": "https://www.localfoodbank.org"
+  },
+  {
+    "id": "2",
+    "title": "Neighborhood Job Center",
+    "category": "Employment",
+    "description": "Offers job training, resume workshops, and employment opportunities for residents.",
+    "url": "https://www.neighborhoodjobs.org"
+  },
+  {
+    "id": "3",
+    "title": "Community Health Clinic",
+    "category": "Healthcare",
+    "description": "Affordable healthcare services including check-ups, vaccinations, and mental health support.",
+    "url": "https://www.localhealthclinic.org"
+  },
+  {
+    "id": "4",
+    "title": "Youth Sports League",
+    "category": "Recreation",
+    "description": "Organizes sports activities and leagues for children and teens in the community.",
+    "url": "https://www.youthsportsleague.org"
+  },
+  {
+    "id": "5",
+    "title": "Local Library",
+    "category": "Education",
+    "description": "Provides access to books, digital resources, and community learning programs.",
+    "url": "https://www.locallibrary.org"
+  }
+]
