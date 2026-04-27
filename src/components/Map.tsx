@@ -1,85 +1,107 @@
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { useState } from "react";
+import { APIProvider, Map as GoogleMap, AdvancedMarker, InfoWindow } from "@vis.gl/react-google-maps";
 import type { Resource } from "@/data/resources/types";
 
 type MapProps = {
 	resources: Resource[];
 };
 
-const createCustomIcon = (category: string) => {
+const CustomPin = ({ category }: { category: string }) => {
 	let color = "#1A1C1E"; // Default charcoal
 	if (category === "playgroup") color = "#2D6AED"; // Primary blue
 	if (category === "library") color = "#34A853"; // Success green
 
-	return L.divIcon({
-		className: "custom-marker",
-		html: `<div style="
-      background-color: ${color};
-      width: 32px;
-      height: 32px;
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      border: 3px solid white;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    ">
-      <div style="
-        width: 8px;
-        height: 8px;
-        background-color: white;
-        border-radius: 50%;
-        transform: rotate(45deg);
-      "></div>
-    </div>`,
-		iconSize: [32, 32],
-		iconAnchor: [16, 32],
-		popupAnchor: [0, -32],
-	});
+	return (
+		<div style={{
+			backgroundColor: color,
+			width: "32px",
+			height: "32px",
+			borderRadius: "50% 50% 50% 0",
+			transform: "rotate(-45deg)",
+			border: "3px solid white",
+			boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "center",
+		}}>
+			<div style={{
+				width: "8px",
+				height: "8px",
+				backgroundColor: "white",
+				borderRadius: "50%",
+				transform: "rotate(45deg)",
+			}} />
+		</div>
+	);
 };
 
-export function Map({ resources }: MapProps) {
-	const stainesCoordinates: [number, number] = [51.433, -0.512]; // Staines town center
+function CompassMap({ resources }: MapProps) {
+	const stainesCoordinates = { lat: 51.433, lng: -0.512 }; // Staines town center
+	const [activeResource, setActiveResource] = useState<Resource | null>(null);
 
 	return (
-		<MapContainer
-			center={stainesCoordinates}
-			zoom={12}
-			scrollWheelZoom={false}
+		<GoogleMap
+			defaultCenter={stainesCoordinates}
+			defaultZoom={12}
+			mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}
 			style={{ height: "100%", width: "100%", borderRadius: "12px" }}
+			disableDefaultUI={true}
+			gestureHandling="cooperative" // Allows scrolling past the map on mobile
 		>
-			<TileLayer
-				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-			/>
 			{resources.map((resource) => {
 				if (resource.location.latitude && resource.location.longitude) {
 					return (
-						<Marker
+						<AdvancedMarker
 							key={resource.id}
-							position={[
-								resource.location.latitude,
-								resource.location.longitude,
-							]}
-							icon={createCustomIcon(resource.category)}
+							position={{
+								lat: resource.location.latitude,
+								lng: resource.location.longitude,
+							}}
+							onClick={() => setActiveResource(resource)}
 						>
-							<Popup className="compass-popup">
-								<div className="p-1">
-									<h3 className="font-bold text-sm m-0" style={{ color: "var(--compass-text)" }}>
-										{resource.name}
-									</h3>
-									<p className="text-xs mt-1 mb-0 opacity-70">
-										{resource.location.address}
-									</p>
-								</div>
-							</Popup>
-						</Marker>
+							<CustomPin category={resource.category} />
+						</AdvancedMarker>
 					);
 				}
 				return null;
 			})}
-		</MapContainer>
+
+			{activeResource && activeResource.location.latitude && activeResource.location.longitude && (
+				<InfoWindow
+					position={{
+						lat: activeResource.location.latitude,
+						lng: activeResource.location.longitude,
+					}}
+					onCloseClick={() => setActiveResource(null)}
+				>
+					<div className="p-1 min-w-[150px]">
+						<h3 className="font-bold text-sm m-0" style={{ color: "var(--compass-text)" }}>
+							{activeResource.name}
+						</h3>
+						<p className="text-xs mt-1 mb-0 opacity-70">
+							{activeResource.location.address}
+						</p>
+					</div>
+				</InfoWindow>
+			)}
+		</GoogleMap>
+	);
+}
+
+export function Map({ resources }: MapProps) {
+	const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+	
+	if (!apiKey) {
+		return (
+			<div className="flex h-full w-full items-center justify-center bg-gray-100 rounded-xl text-sm font-medium text-gray-500">
+				Google Maps API Key missing
+			</div>
+		);
+	}
+
+	return (
+		<APIProvider apiKey={apiKey}>
+			<CompassMap resources={resources} />
+		</APIProvider>
 	);
 }

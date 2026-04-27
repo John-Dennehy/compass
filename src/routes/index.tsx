@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
-import { DynamicMap } from "@/components/DynamicMap";
+import { Map } from "@/components/Map";
 import { ResourceFilters } from "@/components/ResourceFilters";
 import { ResourceList } from "@/components/ResourceList";
 import { getResources } from "@/data/resources";
@@ -179,7 +179,7 @@ export function App() {
           <ResourceList resources={filteredResources} />
         </div>
         <div className="h-[500px] rounded-lg border lg:h-auto" style={{ borderColor: 'var(--compass-border)' }}>
-          <DynamicMap resources={filteredResources} />
+          <Map resources={filteredResources} />
         </div>
       </div>
       </div>
