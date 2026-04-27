@@ -7,9 +7,15 @@ import { ResourceList } from "@/components/ResourceList";
 import { getResources } from "@/data/resources";
 import type { Audience } from "@/data/resources/types";
 
+const toArray = (val: string | string[] | undefined): string[] => {
+  if (!val) return [];
+  if (Array.isArray(val)) return val;
+  return [val];
+};
+
 const resourceSearchSchema = z.object({
-  audience: z.string().optional().catch("all"),
-  day: z.string().optional().catch("all"),
+  audience: z.union([z.string(), z.array(z.string())]).optional(),
+  day: z.union([z.string(), z.array(z.string())]).optional(),
   location: z.string().optional().catch(""),
   category: z.string().optional().catch("all"),
   cost: z.string().optional().catch("all"),
@@ -24,13 +30,16 @@ export const Route = createFileRoute("/")({
 
 export function App() {
   const resources = Route.useLoaderData() ?? [];
+  const searchParams = Route.useSearch();
   const { 
-    audience: audienceFilter = 'all', 
-    day: dayFilter = 'all', 
     location: locationFilter = '',
     category: categoryFilter = 'all',
     cost: costFilter = 'all'
-  } = Route.useSearch();
+  } = searchParams;
+  
+  const audienceFilters = toArray(searchParams.audience);
+  const dayFilters = toArray(searchParams.day);
+
   const navigate = useNavigate({ from: Route.fullPath });
 
   // Local state for the location input to ensure it's responsive
@@ -58,20 +67,42 @@ export function App() {
   }, [localLocation, navigate, locationFilter]);
 
   const handleAudienceChange = (value: string) => {
+    if (value === "all") {
+      navigate({
+        search: (prev) => ({ ...prev, audience: undefined }),
+        replace: true,
+      });
+      return;
+    }
+    const newFilters = audienceFilters.includes(value)
+      ? audienceFilters.filter((v) => v !== value)
+      : [...audienceFilters, value];
+      
     navigate({
-      search: (prev) => ({ 
-        ...prev, 
-        audience: value === "all" ? undefined : value 
+      search: (prev) => ({
+        ...prev,
+        audience: newFilters.length === 0 ? undefined : newFilters,
       }),
       replace: true,
     });
   };
 
   const handleDayChange = (value: string) => {
+    if (value === "all") {
+      navigate({
+        search: (prev) => ({ ...prev, day: undefined }),
+        replace: true,
+      });
+      return;
+    }
+    const newFilters = dayFilters.includes(value)
+      ? dayFilters.filter((v) => v !== value)
+      : [...dayFilters, value];
+
     navigate({
-      search: (prev) => ({ 
-        ...prev, 
-        day: value === "all" ? undefined : value 
+      search: (prev) => ({
+        ...prev,
+        day: newFilters.length === 0 ? undefined : newFilters,
       }),
       replace: true,
     });
@@ -117,12 +148,16 @@ export function App() {
   const filteredResources = useMemo(() => {
     return resources.filter((resource) => {
       const audienceMatch =
-        audienceFilter === "all" ||
-        resource.audiences?.includes(audienceFilter as Audience) ||
-        resource.audiences?.includes("all-ages");
+        audienceFilters.length === 0 ||
+        audienceFilters.some((filter) =>
+          resource.audiences?.includes(filter as Audience) ||
+          resource.audiences?.includes("all-ages")
+        );
       const dayMatch =
-        dayFilter === "all" ||
-        resource.schedule?.some((s) => s.day === dayFilter);
+        dayFilters.length === 0 ||
+        dayFilters.some((filter) =>
+          resource.schedule?.some((s) => s.day === filter)
+        );
       const locationMatch =
         !locationFilter ||
         resource.location.address
@@ -138,7 +173,7 @@ export function App() {
 
       return audienceMatch && dayMatch && locationMatch && categoryMatch && costMatch;
     });
-  }, [resources, audienceFilter, dayFilter, locationFilter, categoryFilter, costFilter]);
+  }, [resources, audienceFilters, dayFilters, locationFilter, categoryFilter, costFilter]);
 
   return (
     <div className="min-h-screen px-4 py-8 md:px-8" style={{ backgroundColor: 'var(--compass-surface)' }}>
@@ -162,8 +197,8 @@ export function App() {
         audiences={audiences}
         days={days}
         categories={categories}
-        currentAudience={audienceFilter}
-        currentDay={dayFilter}
+        currentAudience={audienceFilters}
+        currentDay={dayFilters}
         currentLocation={localLocation}
         currentCategory={categoryFilter}
         currentCost={costFilter}
