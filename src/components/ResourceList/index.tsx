@@ -22,9 +22,11 @@ import type { Resource } from "@/data/resources/types";
 
 type ResourceListProps = {
   resources?: Resource[];
+  activeResourceId?: string | null;
+  onResourceHover?: (id: string | null) => void;
 };
 
-export function ResourceList({ resources = [] }: ResourceListProps) {
+export function ResourceList({ resources = [], activeResourceId, onResourceHover }: ResourceListProps) {
   if (resources.length === 0) {
     return (
     <div
@@ -39,7 +41,13 @@ export function ResourceList({ resources = [] }: ResourceListProps) {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
       {resources.map((resource) => (
-        <Card key={resource.id} className="flex flex-col overflow-hidden transition-all hover:shadow-md border-2" style={{ borderColor: 'var(--compass-border)' }}>
+        <Card 
+          key={resource.id} 
+          className={`flex flex-col overflow-hidden transition-all hover:shadow-md border-2 ${activeResourceId === resource.id ? 'border-[var(--compass-primary)] shadow-md ring-1 ring-[var(--compass-primary)]' : ''}`}
+          style={{ borderColor: activeResourceId === resource.id ? 'var(--compass-primary)' : 'var(--compass-border)' }}
+          onMouseEnter={() => onResourceHover?.(resource.id)}
+          onMouseLeave={() => onResourceHover?.(null)}
+        >
           {resource.images && resource.images.length > 0 && (
             <div className="h-48 w-full overflow-hidden">
               <img 
