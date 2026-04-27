@@ -44,7 +44,8 @@ export function App() {
 
   // Local state for the location input to ensure it's responsive
   const [localLocation, setLocalLocation] = useState(locationFilter);
-  const [activeResourceId, setActiveResourceId] = useState<string | null>(null);
+  const [hoveredResourceId, setHoveredResourceId] = useState<string | null>(null);
+  const [selectedResourceId, setSelectedResourceId] = useState<string | null>(null);
 
   // Sync local location with URL if URL changes (e.g. back button)
   useEffect(() => {
@@ -213,16 +214,16 @@ export function App() {
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="max-h-[80vh] overflow-y-auto">
           <ResourceList 
-            resources={filteredResources} 
-            activeResourceId={activeResourceId}
-            onResourceHover={setActiveResourceId}
+            resources={selectedResourceId ? filteredResources.filter(r => r.id === selectedResourceId) : filteredResources} 
+            activeResourceId={hoveredResourceId || selectedResourceId}
+            onResourceHover={setHoveredResourceId}
           />
         </div>
         <div className="h-[500px] rounded-lg border lg:h-auto" style={{ borderColor: 'var(--compass-border)' }}>
           <Map 
             resources={filteredResources} 
-            activeResourceId={activeResourceId}
-            onResourceClick={setActiveResourceId}
+            activeResourceId={hoveredResourceId || selectedResourceId}
+            onResourceClick={setSelectedResourceId}
           />
         </div>
       </div>
