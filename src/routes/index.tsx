@@ -179,54 +179,60 @@ export function App() {
 
   return (
     <div className="min-h-screen px-4 py-8 md:px-8" style={{ backgroundColor: 'var(--compass-surface)' }}>
-      <div className="mx-auto max-w-7xl space-y-8">
-      <div>
-        <h1
-          className="text-4xl font-black tracking-tighter md:text-5xl"
-          style={{ color: 'var(--compass-text)' }}
-        >
-          Compass
-        </h1>
-        <h2
-          className="mt-2 text-xl font-medium md:text-2xl"
-          style={{ color: 'var(--compass-primary)' }}
-        >
-          A Community Resource Directory
-        </h2>
-      </div>
+      <div className="mx-auto max-w-7xl grid gap-8 lg:grid-cols-[300px_1fr]">
+        
+        {/* Sidebar */}
+        <div className="space-y-8 lg:sticky lg:top-24 lg:h-[calc(100vh-6rem)] lg:overflow-y-auto lg:pr-4">
+          <div>
+            <h1
+              className="text-4xl font-black tracking-tighter md:text-5xl"
+              style={{ color: 'var(--compass-text)' }}
+            >
+              Compass
+            </h1>
+            <h2
+              className="mt-2 text-xl font-medium md:text-2xl"
+              style={{ color: 'var(--compass-primary)' }}
+            >
+              A Community Resource Directory
+            </h2>
+          </div>
 
-      <ResourceFilters
-        audiences={audiences}
-        days={days}
-        categories={categories}
-        currentAudience={audienceFilters}
-        currentDay={dayFilters}
-        currentLocation={localLocation}
-        currentCategory={categoryFilter}
-        currentCost={costFilter}
-        onAudienceChange={handleAudienceChange}
-        onDayChange={handleDayChange}
-        onLocationChange={setLocalLocation}
-        onCategoryChange={handleCategoryChange}
-        onCostChange={handleCostChange}
-      />
-
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="max-h-[80vh] overflow-y-auto">
-          <ResourceList 
-            resources={selectedResourceId ? filteredResources.filter(r => r.id === selectedResourceId) : filteredResources} 
-            activeResourceId={hoveredResourceId || selectedResourceId}
-            onResourceHover={setHoveredResourceId}
+          <ResourceFilters
+            audiences={audiences}
+            days={days}
+            categories={categories}
+            currentAudience={audienceFilters}
+            currentDay={dayFilters}
+            currentLocation={localLocation}
+            currentCategory={categoryFilter}
+            currentCost={costFilter}
+            onAudienceChange={handleAudienceChange}
+            onDayChange={handleDayChange}
+            onLocationChange={setLocalLocation}
+            onCategoryChange={handleCategoryChange}
+            onCostChange={handleCostChange}
           />
         </div>
-        <div className="h-[500px] rounded-lg border lg:h-auto" style={{ borderColor: 'var(--compass-border)' }}>
-          <Map 
-            resources={filteredResources} 
-            activeResourceId={hoveredResourceId || selectedResourceId}
-            onResourceClick={setSelectedResourceId}
-          />
+
+        {/* Main Content */}
+        <div className="flex flex-col gap-8">
+          <div className="h-[400px] shrink-0 overflow-hidden rounded-lg border lg:h-[500px]" style={{ borderColor: 'var(--compass-border)' }}>
+            <Map 
+              resources={filteredResources} 
+              activeResourceId={hoveredResourceId || selectedResourceId}
+              onResourceClick={setSelectedResourceId}
+            />
+          </div>
+          <div>
+            <ResourceList 
+              resources={selectedResourceId ? filteredResources.filter(r => r.id === selectedResourceId) : filteredResources} 
+              activeResourceId={hoveredResourceId || selectedResourceId}
+              onResourceHover={setHoveredResourceId}
+            />
+          </div>
         </div>
-      </div>
+
       </div>
     </div>
   );

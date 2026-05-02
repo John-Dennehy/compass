@@ -9,13 +9,13 @@
    Refined Vibrant Compass brand palette
    ========================================= */
 :root {
-  --compass-primary: #2D6AED;
-  --compass-secondary: #FFD34E;
-  --compass-surface: #FAF8FF;
-  --compass-text: #1A1C1E;
-  --compass-success: #34A853;
-  --compass-border: #E8E8F0;
-  --compass-input-bg: #F4F4F8;
+  --compass-primary: #2563EB;
+  --compass-secondary: #FACC15;
+  --compass-surface: #F8F9FF;
+  --compass-text: #0B1C30;
+  --compass-success: #22C55E;
+  --compass-border: #E2E8F0;
+  --compass-input-bg: #FFFFFF;
 }
 
 body {
@@ -75,40 +75,40 @@ code {
 }
 
 :root {
-  --radius: 0.75rem; /* 12px — matches design system card radius */
+  --radius: 0.5rem; /* 8px — matches design system card radius */
   /* Compass design system: override shadcn defaults with brand palette */
-  --background: #FAF8FF;
-  --foreground: #1A1C1E;
-  --primary: #2D6AED;
+  --background: #F8F9FF;
+  --foreground: #0B1C30;
+  --primary: #2563EB;
   --primary-foreground: #ffffff;
-  --ring: #2D6AED;
-  --border: #E8E8F0;
-  --input: #F4F4F8;
+  --ring: #2563EB;
+  --border: #E2E8F0;
+  --input: #ffffff;
   /* Remaining shadcn tokens */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: #FFD34E;
-  --accent-foreground: #1A1C1E;
-  --destructive: oklch(0.577 0.245 27.325);
+  --card: #ffffff;
+  --card-foreground: #0B1C30;
+  --popover: #ffffff;
+  --popover-foreground: #0B1C30;
+  --secondary: #FACC15;
+  --secondary-foreground: #0B1C30;
+  --muted: #E5EEFF;
+  --muted-foreground: #434655;
+  --accent: #FACC15;
+  --accent-foreground: #0B1C30;
+  --destructive: #ba1a1a;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: #2D6AED;
+  --sidebar: #F8F9FF;
+  --sidebar-foreground: #0B1C30;
+  --sidebar-primary: #2563EB;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: #E8E8F0;
-  --sidebar-ring: #2D6AED;
+  --sidebar-accent: #E5EEFF;
+  --sidebar-accent-foreground: #0B1C30;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #2563EB;
 }
 
 .dark {

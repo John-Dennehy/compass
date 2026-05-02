@@ -41,15 +41,29 @@ export default function Header() {
             className="text-sm font-semibold transition-colors hover:opacity-70"
             style={{ color: "var(--compass-text)" }}
           >
-            Resources
+            Browse
           </Link>
-          <a
-            href="#"
+          <Link
+            to="/events"
+            className="text-sm font-semibold transition-colors hover:opacity-70"
+            style={{ color: "var(--compass-text)" }}
+          >
+            Events
+          </Link>
+          <Link
+            to="/compass-community"
+            className="text-sm font-semibold transition-colors hover:opacity-70"
+            style={{ color: "var(--compass-text)" }}
+          >
+            Compass Community
+          </Link>
+          <Link
+            to="/about"
             className="text-sm font-semibold transition-colors hover:opacity-70"
             style={{ color: "var(--compass-text)" }}
           >
             About
-          </a>
+          </Link>
           <Link
             to="/submit"
             className="inline-flex h-10 items-center justify-center rounded-lg px-5 text-sm font-bold text-white transition-transform hover:scale-105 active:scale-95"
@@ -84,16 +98,32 @@ export default function Header() {
               style={{ color: "var(--compass-text)" }}
               onClick={() => setIsMenuOpen(false)}
             >
-              Resources
+              Browse
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/events"
+              className="text-lg font-semibold"
+              style={{ color: "var(--compass-text)" }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Events
+            </Link>
+            <Link
+              to="/compass-community"
+              className="text-lg font-semibold"
+              style={{ color: "var(--compass-text)" }}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Compass Community
+            </Link>
+            <Link
+              to="/about"
               className="text-lg font-semibold"
               style={{ color: "var(--compass-text)" }}
               onClick={() => setIsMenuOpen(false)}
             >
               About
-            </a>
+            </Link>
             <Link
               to="/submit"
               className="flex h-12 items-center justify-center rounded-lg font-bold text-white"
