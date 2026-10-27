@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+	--font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+	--font-sans:
+		"Atkinson Hyperlegible Next", "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+
+	--color-paper: var(--paper);
+	--color-surface: var(--surface);
+	--color-edge: var(--edge);
+	--color-ink: var(--ink);
+	--color-muted: var(--muted);
+	--color-teal: var(--teal);
+	--color-teal-soft: var(--teal-soft);
+	--color-on-teal: var(--on-teal);
+	--color-sun: var(--sun);
+	--color-sun-soft: var(--sun-soft);
+	--color-coral: var(--coral);
+	--color-coral-soft: var(--coral-soft);
+}
+
+/* Every text colour here is at least 4.5:1 on paper and surface, in both themes. */
+:root {
+	--paper: #f6f4ee;
+	--surface: #ffffff;
+	--edge: #d9dde0;
+	--ink: #1d2a33;
+	--muted: #55616b;
+	--teal: #0d6662;
+	--teal-soft: #dcefed;
+	--on-teal: #ffffff;
+	--sun: #f2b33d;
+	--sun-soft: #fdf0d3;
+	--coral: #a63a27;
+	--coral-soft: #fbe4de;
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--paper: #12191e;
+		--surface: #1a242b;
+		--edge: #2f3c45;
+		--ink: #edf2f4;
+		--muted: #a7b3bb;
+		--teal: #6fd0c8;
+		--teal-soft: #143331;
+		--on-teal: #0b1a19;
+		--sun: #f2b33d;
+		--sun-soft: #3a2f17;
+		--coral: #f39a86;
+		--coral-soft: #3d201a;
+		color-scheme: dark;
+	}
+}
+
+@layer base {
+	body {
+		@apply bg-paper font-sans text-ink antialiased;
+		min-height: 100dvh;
+	}
+	h1,
+	h2,
+	h3 {
+		@apply font-display tracking-tight;
+	}
+	:focus-visible {
+		@apply outline-3 outline-offset-2 outline-teal;
+	}
+	[id] {
+		scroll-margin-top: 7rem;
+	}
+}
+
+@utility panel {
+	@apply rounded-2xl border border-edge bg-surface;
+}
+
+@utility btn {
+	@apply inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-2.5 font-bold transition duration-150 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility btn-primary {
+	@apply btn bg-teal text-on-teal hover:brightness-110;
+}
+
+@utility btn-quiet {
+	@apply btn border-2 border-edge bg-surface text-ink hover:border-teal;
+}
+
+@utility btn-small {
+	@apply inline-flex min-h-10 items-center justify-center gap-1.5 rounded-lg border-2 border-edge bg-surface px-3 text-sm font-bold text-ink transition hover:border-teal;
+}
+
+@utility field {
+	@apply min-h-12 w-full rounded-xl border-2 border-edge bg-surface px-3 py-2 text-base text-ink placeholder:text-muted focus:border-teal focus:outline-none;
+}
+
+@utility label {
+	@apply mb-1 block font-bold;
+}
+
+@utility hint {
+	@apply text-sm text-muted;
+}
+
+@utility tag {
+	@apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-sm font-bold;
+}
+
+@utility link {
+	@apply font-bold text-teal underline decoration-2 underline-offset-2 hover:decoration-4;
+}
+
+@utility eyebrow {
+	@apply text-sm font-bold uppercase tracking-[0.12em] text-muted;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		/* biome-ignore lint/complexity/noImportantStyles: reduced motion must win over utilities */
+		animation-duration: 0.01ms !important;
+		/* biome-ignore lint/complexity/noImportantStyles: reduced motion must win over utilities */
+		transition-duration: 0.01ms !important;
+		/* biome-ignore lint/complexity/noImportantStyles: reduced motion must win over utilities */
+		scroll-behavior: auto !important;
+	}
+}

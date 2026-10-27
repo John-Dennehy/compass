@@ -1,6 +1,7 @@
 import { neon } from '@neondatabase/serverless'
 import { and, asc, eq, gt, inArray, lt, sql } from 'drizzle-orm'
 import { drizzle } from 'drizzle-orm/neon-http'
+import type { PgDatabase } from 'drizzle-orm/pg-core'
 import type { Changes } from '@/core/changes'
 import { detailsOf } from '@/core/changes'
 import type { Area, Category, ConfirmedBy, Details, Listing } from '@/core/listing'
@@ -110,15 +111,16 @@ export function sourceRevision(listing: Listing): Revision {
 		changes: {},
 		by: 'source',
 		contributorId: null,
-		note: 'Added from Spelthorne’s playgroups leaflet (September 2025).',
+		note: null,
 		at: listing.createdAt,
 	}
 }
 
 const iso = (d: Date | null) => (d ? d.toISOString() : null)
 
-function neonStore(url: string): Store {
-	const db = drizzle(neon(url))
+/** Any Postgres through Drizzle: Neon in production, PGlite in tests. */
+// biome-ignore lint/suspicious/noExplicitAny: the store works with any Postgres driver
+export function sqlStore(db: PgDatabase<any, any>): Store {
 	let seeded: Promise<void> | undefined
 
 	/** Fills an empty database with the launch data, once. */
@@ -218,18 +220,16 @@ function neonStore(url: string): Store {
 			return rows.length > 0
 		},
 		async createListing(listing, revision) {
-			await db.batch([
-				db.insert(t.listings).values({
-					id: listing.id,
-					slug: listing.slug,
-					areaId: listing.areaId,
-					status: listing.status,
-					version: listing.version,
-					data: listing,
-					updatedAt: new Date(listing.updatedAt),
-				}),
-				db.insert(t.revisions).values(toRevisionRow(revision)),
-			])
+			await db.insert(t.listings).values({
+				id: listing.id,
+				slug: listing.slug,
+				areaId: listing.areaId,
+				status: listing.status,
+				version: listing.version,
+				data: listing,
+				updatedAt: new Date(listing.updatedAt),
+			})
+			await db.insert(t.revisions).values(toRevisionRow(revision))
 		},
 		async updateListing(listing, expectedVersion, revision) {
 			const updated = await db
@@ -508,6 +508,8 @@ export function memoryStore(): Store {
 let store: Store | undefined
 
 export function getStore(): Store {
-	store ??= process.env.DATABASE_URL ? neonStore(process.env.DATABASE_URL) : memoryStore()
+	store ??= process.env.DATABASE_URL
+		? sqlStore(drizzle(neon(process.env.DATABASE_URL)))
+		: memoryStore()
 	return store
 }

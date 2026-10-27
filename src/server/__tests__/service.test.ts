@@ -154,7 +154,8 @@ describe('suggesting changes', () => {
 		})
 		const history = await service.listingHistory(store, BUTTERFLIES, await actor(null))
 		expect(history?.revisions.map((r) => r.version)).toEqual([2, 1])
-		expect(history?.revisions[0]?.note).toBe('Asked at the door')
+		// What they told the moderators isn't shown in the public history.
+		expect(history?.revisions[0]?.note).toBeNull()
 		expect((await store.contributor(parent.id))?.approved).toBe(1)
 
 		const twice = await service.reviewSuggestion(
@@ -264,6 +265,16 @@ describe('suggesting changes', () => {
 			notes: 'Closed on bank holidays.',
 			lastConfirmedBy: 'organiser',
 		})
+		// Taking the notes out removes them.
+		const without = { ...(await butterflies()) }
+		delete without.notes
+		await service.suggestChange(
+			store,
+			await actor(organiser),
+			{ listingId: BUTTERFLIES, baseVersion: 3, details: without },
+			later(2),
+		)
+		expect((await store.listing(BUTTERFLIES))?.notes).toBeUndefined()
 	})
 
 	it('limits how many suggestions a new contributor can have waiting', async () => {

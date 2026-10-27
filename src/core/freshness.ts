@@ -16,8 +16,10 @@ export type FreshnessLevel = 'recent' | 'check' | 'stale'
 export interface Freshness {
 	level: FreshnessLevel
 	days: number
-	/** "Checked by the organiser 2 weeks ago". */
+	/** "Checked 2 weeks ago by the organiser". */
 	label: string
+	/** "Checked 2 weeks ago", for tight spaces. */
+	short: string
 	/** How many different people have said it stopped since it was last confirmed. */
 	stoppedReports: number
 	/** A plain warning when people say it has stopped. */
@@ -47,13 +49,14 @@ export function freshness(
 		listing.lastConfirmedBy === 'source'
 			? `Last checked ${when}, ${WHO.source}`
 			: `Checked ${when} ${WHO[listing.lastConfirmedBy]}`
+	const short = /\d{4}$/.test(ago) ? `Last checked ${ago}` : `Checked ${ago}`
 	const warning =
 		stoppedReports >= STOPPED_WARNING
 			? `${stoppedReports} people have said this has stopped. Check before you go.`
 			: stoppedReports === 1
 				? 'Someone said this may have stopped. Check before you go.'
 				: null
-	return { level, days, label, stoppedReports, warning }
+	return { level, days, label, short, stoppedReports, warning }
 }
 
 /** Fresh listings first, and ones people say have stopped last. Used for search results, never for the week's time order. */

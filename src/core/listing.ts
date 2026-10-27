@@ -17,15 +17,20 @@ export const DAYS = [
 ] as const
 export type Day = (typeof DAYS)[number]
 
-export const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use a date like 2026-11-02')
+export const isoDate = z
+	.string()
+	.min(1, 'Please fill this in')
+	.regex(/^\d{4}-\d{2}-\d{2}$/, 'Use a date like 2026-11-02')
 export type IsoDate = z.infer<typeof isoDate>
 
 export const clockTime = z
 	.string()
+	.min(1, 'Please fill this in')
 	.regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Use a 24-hour time like 09:30')
 export type ClockTime = z.infer<typeof clockTime>
 
-const text = (max: number) => z.string().trim().min(1).max(max)
+const text = (max: number) =>
+	z.string().trim().min(1, 'Please fill this in').max(max, `Please keep it under ${max} characters`)
 
 export const sessionSchema = z
 	.object({
@@ -55,6 +60,7 @@ export const sessionSchema = z
 	})
 	.refine((s) => !s.end || s.end > s.start, { message: 'It has to finish after it starts' })
 export type Session = z.infer<typeof sessionSchema>
+export type SessionInput = z.input<typeof sessionSchema>
 
 export const occurrenceSchema = z
 	.object({
@@ -109,7 +115,7 @@ const safeUrl = z
 	.string()
 	.trim()
 	.transform((u) => (/^https?:\/\//i.test(u) ? u : `https://${u}`))
-	.pipe(z.url({ protocol: /^https?$/ }))
+	.pipe(z.url({ protocol: /^https?$/, error: 'That doesn’t look like a web address' }))
 
 export const contactSchema = z.object({
 	kind: z.enum(['phone', 'text', 'email']),
@@ -127,7 +133,7 @@ export type Link = z.infer<typeof linkSchema>
 /** Everything a contributor can propose a change to. */
 export const detailsSchema = z.object({
 	name: text(120),
-	category: z.string().regex(/^[a-z0-9-]{2,40}$/),
+	category: z.string().regex(/^[a-z0-9-]{2,40}$/, 'Please choose one'),
 	summary: text(400).optional(),
 	/** Who it's for, in the organiser's words, like "0 to 4 years" or "expectant parents". */
 	whoFor: text(120),

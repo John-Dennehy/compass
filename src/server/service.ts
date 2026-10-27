@@ -5,6 +5,7 @@ import {
 	type Area,
 	type Category,
 	type ConfirmedBy,
+	DETAIL_FIELDS,
 	type Details,
 	type DetailsInput,
 	detailsSchema,
@@ -225,6 +226,13 @@ async function limitsFor(
 	})
 }
 
+/** A listing with new details, dropping optional fields the new details leave out. */
+function withDetails(listing: Listing, details: Details): Listing {
+	const meta: Record<string, unknown> = { ...listing }
+	for (const field of DETAIL_FIELDS) delete meta[field]
+	return { ...(meta as Omit<Listing, keyof Details>), ...details }
+}
+
 function revision(
 	listing: Listing,
 	changes: Changes,
@@ -350,8 +358,7 @@ export async function suggestChange(
 	if (routeSuggestion('change', trust) === 'apply') {
 		const by = trust === 'organiser' ? 'organiser' : 'moderator'
 		const next: Listing = {
-			...listing,
-			...applyChanges(detailsOf(listing), changes),
+			...withDetails(listing, applyChanges(detailsOf(listing), changes)),
 			version: listing.version + 1,
 			updatedAt: at,
 			lastConfirmedAt: at,
@@ -538,7 +545,7 @@ export async function reviewSuggestion(
 			}
 			await store.createListing(
 				listing,
-				revision(listing, {}, 'contributor', suggestion.contributorId, suggestion.message, at),
+				revision(listing, {}, 'contributor', suggestion.contributorId, null, at),
 			)
 		} else if (suggestion.listingId) {
 			const listing = await store.listing(suggestion.listingId)
@@ -554,8 +561,7 @@ export async function reviewSuggestion(
 					)
 				}
 				const next: Listing = {
-					...listing,
-					...details,
+					...withDetails(listing, details),
 					version: listing.version + 1,
 					updatedAt: at,
 					lastConfirmedAt: at,
@@ -569,7 +575,8 @@ export async function reviewSuggestion(
 						suggestion.changes,
 						'contributor',
 						suggestion.contributorId,
-						suggestion.message,
+						// What they told the moderators stays private.
+						null,
 						at,
 					),
 				)
