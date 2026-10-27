@@ -9,38 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SubmitRouteImport } from './routes/submit'
-import { Route as EventsRouteImport } from './routes/events'
-import { Route as CompassCommunityRouteImport } from './routes/compass-community'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
-import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
-import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
-import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
-import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
-import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
-import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AddRouteImport } from './routes/add'
+import { Route as ComingUpRouteImport } from './routes/coming-up'
+import { Route as MeRouteImport } from './routes/me'
+import { Route as ModerateRouteImport } from './routes/moderate'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as SignInIndexRouteImport } from './routes/sign-in/index'
+import { Route as SignInCheckRouteImport } from './routes/sign-in/check'
+import { Route as ListingSlugIndexRouteImport } from './routes/listing/$slug/index'
+import { Route as ListingSlugChangeRouteImport } from './routes/listing/$slug/change'
+import { Route as ListingSlugClaimRouteImport } from './routes/listing/$slug/claim'
+import { Route as ListingSlugHistoryRouteImport } from './routes/listing/$slug/history'
 
-const SubmitRoute = SubmitRouteImport.update({
-  id: '/submit',
-  path: '/submit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EventsRoute = EventsRouteImport.update({
-  id: '/events',
-  path: '/events',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CompassCommunityRoute = CompassCommunityRouteImport.update({
-  id: '/compass-community',
-  path: '/compass-community',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -48,185 +33,179 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AddRoute = AddRouteImport.update({
+  id: '/add',
+  path: '/add',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
-  id: '/demo/start/server-funcs',
-  path: '/demo/start/server-funcs',
+const ComingUpRoute = ComingUpRouteImport.update({
+  id: '/coming-up',
+  path: '/coming-up',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
-  id: '/demo/start/api-request',
-  path: '/demo/start/api-request',
+const MeRoute = MeRouteImport.update({
+  id: '/me',
+  path: '/me',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoApiNamesRoute = DemoApiNamesRouteImport.update({
-  id: '/demo/api/names',
-  path: '/demo/api/names',
+const ModerateRoute = ModerateRouteImport.update({
+  id: '/moderate',
+  path: '/moderate',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
-  id: '/demo/start/ssr/',
-  path: '/demo/start/ssr/',
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartSsrSpaModeRoute = DemoStartSsrSpaModeRouteImport.update({
-  id: '/demo/start/ssr/spa-mode',
-  path: '/demo/start/ssr/spa-mode',
+const SignInIndexRoute = SignInIndexRouteImport.update({
+  id: '/sign-in/',
+  path: '/sign-in/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartSsrFullSsrRoute = DemoStartSsrFullSsrRouteImport.update({
-  id: '/demo/start/ssr/full-ssr',
-  path: '/demo/start/ssr/full-ssr',
+const SignInCheckRoute = SignInCheckRouteImport.update({
+  id: '/sign-in/check',
+  path: '/sign-in/check',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
-  id: '/demo/start/ssr/data-only',
-  path: '/demo/start/ssr/data-only',
+const ListingSlugIndexRoute = ListingSlugIndexRouteImport.update({
+  id: '/listing/$slug/',
+  path: '/listing/$slug/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListingSlugChangeRoute = ListingSlugChangeRouteImport.update({
+  id: '/listing/$slug/change',
+  path: '/listing/$slug/change',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListingSlugClaimRoute = ListingSlugClaimRouteImport.update({
+  id: '/listing/$slug/claim',
+  path: '/listing/$slug/claim',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListingSlugHistoryRoute = ListingSlugHistoryRouteImport.update({
+  id: '/listing/$slug/history',
+  path: '/listing/$slug/history',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/compass-community': typeof CompassCommunityRoute
-  '/events': typeof EventsRoute
-  '/submit': typeof SubmitRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
-  '/demo/start/ssr': typeof DemoStartSsrIndexRoute
+  '/add': typeof AddRoute
+  '/coming-up': typeof ComingUpRoute
+  '/me': typeof MeRoute
+  '/moderate': typeof ModerateRoute
+  '/search': typeof SearchRoute
+  '/sign-in/check': typeof SignInCheckRoute
+  '/sign-in/': typeof SignInIndexRoute
+  '/listing/$slug/change': typeof ListingSlugChangeRoute
+  '/listing/$slug/claim': typeof ListingSlugClaimRoute
+  '/listing/$slug/history': typeof ListingSlugHistoryRoute
+  '/listing/$slug/': typeof ListingSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/compass-community': typeof CompassCommunityRoute
-  '/events': typeof EventsRoute
-  '/submit': typeof SubmitRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
-  '/demo/start/ssr': typeof DemoStartSsrIndexRoute
+  '/add': typeof AddRoute
+  '/coming-up': typeof ComingUpRoute
+  '/me': typeof MeRoute
+  '/moderate': typeof ModerateRoute
+  '/search': typeof SearchRoute
+  '/sign-in/check': typeof SignInCheckRoute
+  '/sign-in': typeof SignInIndexRoute
+  '/listing/$slug/change': typeof ListingSlugChangeRoute
+  '/listing/$slug/claim': typeof ListingSlugClaimRoute
+  '/listing/$slug/history': typeof ListingSlugHistoryRoute
+  '/listing/$slug': typeof ListingSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/compass-community': typeof CompassCommunityRoute
-  '/events': typeof EventsRoute
-  '/submit': typeof SubmitRoute
-  '/demo/api/names': typeof DemoApiNamesRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
-  '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
-  '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
-  '/demo/start/ssr/spa-mode': typeof DemoStartSsrSpaModeRoute
-  '/demo/start/ssr/': typeof DemoStartSsrIndexRoute
+  '/add': typeof AddRoute
+  '/coming-up': typeof ComingUpRoute
+  '/me': typeof MeRoute
+  '/moderate': typeof ModerateRoute
+  '/search': typeof SearchRoute
+  '/sign-in/check': typeof SignInCheckRoute
+  '/sign-in/': typeof SignInIndexRoute
+  '/listing/$slug/change': typeof ListingSlugChangeRoute
+  '/listing/$slug/claim': typeof ListingSlugClaimRoute
+  '/listing/$slug/history': typeof ListingSlugHistoryRoute
+  '/listing/$slug/': typeof ListingSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
-    | '/admin'
-    | '/compass-community'
-    | '/events'
-    | '/submit'
-    | '/demo/api/names'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
-    | '/demo/start/ssr/data-only'
-    | '/demo/start/ssr/full-ssr'
-    | '/demo/start/ssr/spa-mode'
-    | '/demo/start/ssr'
+    | '/add'
+    | '/coming-up'
+    | '/me'
+    | '/moderate'
+    | '/search'
+    | '/sign-in/check'
+    | '/sign-in/'
+    | '/listing/$slug/change'
+    | '/listing/$slug/claim'
+    | '/listing/$slug/history'
+    | '/listing/$slug/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/admin'
-    | '/compass-community'
-    | '/events'
-    | '/submit'
-    | '/demo/api/names'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
-    | '/demo/start/ssr/data-only'
-    | '/demo/start/ssr/full-ssr'
-    | '/demo/start/ssr/spa-mode'
-    | '/demo/start/ssr'
+    | '/add'
+    | '/coming-up'
+    | '/me'
+    | '/moderate'
+    | '/search'
+    | '/sign-in/check'
+    | '/sign-in'
+    | '/listing/$slug/change'
+    | '/listing/$slug/claim'
+    | '/listing/$slug/history'
+    | '/listing/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/admin'
-    | '/compass-community'
-    | '/events'
-    | '/submit'
-    | '/demo/api/names'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
-    | '/demo/start/ssr/data-only'
-    | '/demo/start/ssr/full-ssr'
-    | '/demo/start/ssr/spa-mode'
-    | '/demo/start/ssr/'
+    | '/add'
+    | '/coming-up'
+    | '/me'
+    | '/moderate'
+    | '/search'
+    | '/sign-in/check'
+    | '/sign-in/'
+    | '/listing/$slug/change'
+    | '/listing/$slug/claim'
+    | '/listing/$slug/history'
+    | '/listing/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
-  CompassCommunityRoute: typeof CompassCommunityRoute
-  EventsRoute: typeof EventsRoute
-  SubmitRoute: typeof SubmitRoute
-  DemoApiNamesRoute: typeof DemoApiNamesRoute
-  DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
-  DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
-  DemoStartSsrDataOnlyRoute: typeof DemoStartSsrDataOnlyRoute
-  DemoStartSsrFullSsrRoute: typeof DemoStartSsrFullSsrRoute
-  DemoStartSsrSpaModeRoute: typeof DemoStartSsrSpaModeRoute
-  DemoStartSsrIndexRoute: typeof DemoStartSsrIndexRoute
+  AddRoute: typeof AddRoute
+  ComingUpRoute: typeof ComingUpRoute
+  MeRoute: typeof MeRoute
+  ModerateRoute: typeof ModerateRoute
+  SearchRoute: typeof SearchRoute
+  SignInCheckRoute: typeof SignInCheckRoute
+  SignInIndexRoute: typeof SignInIndexRoute
+  ListingSlugChangeRoute: typeof ListingSlugChangeRoute
+  ListingSlugClaimRoute: typeof ListingSlugClaimRoute
+  ListingSlugHistoryRoute: typeof ListingSlugHistoryRoute
+  ListingSlugIndexRoute: typeof ListingSlugIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/submit': {
-      id: '/submit'
-      path: '/submit'
-      fullPath: '/submit'
-      preLoaderRoute: typeof SubmitRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/events': {
-      id: '/events'
-      path: '/events'
-      fullPath: '/events'
-      preLoaderRoute: typeof EventsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/compass-community': {
-      id: '/compass-community'
-      path: '/compass-community'
-      fullPath: '/compass-community'
-      preLoaderRoute: typeof CompassCommunityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -236,60 +215,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/add': {
+      id: '/add'
+      path: '/add'
+      fullPath: '/add'
+      preLoaderRoute: typeof AddRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/server-funcs': {
-      id: '/demo/start/server-funcs'
-      path: '/demo/start/server-funcs'
-      fullPath: '/demo/start/server-funcs'
-      preLoaderRoute: typeof DemoStartServerFuncsRouteImport
+    '/coming-up': {
+      id: '/coming-up'
+      path: '/coming-up'
+      fullPath: '/coming-up'
+      preLoaderRoute: typeof ComingUpRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/api-request': {
-      id: '/demo/start/api-request'
-      path: '/demo/start/api-request'
-      fullPath: '/demo/start/api-request'
-      preLoaderRoute: typeof DemoStartApiRequestRouteImport
+    '/me': {
+      id: '/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/api/names': {
-      id: '/demo/api/names'
-      path: '/demo/api/names'
-      fullPath: '/demo/api/names'
-      preLoaderRoute: typeof DemoApiNamesRouteImport
+    '/moderate': {
+      id: '/moderate'
+      path: '/moderate'
+      fullPath: '/moderate'
+      preLoaderRoute: typeof ModerateRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/ssr/': {
-      id: '/demo/start/ssr/'
-      path: '/demo/start/ssr'
-      fullPath: '/demo/start/ssr'
-      preLoaderRoute: typeof DemoStartSsrIndexRouteImport
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/ssr/spa-mode': {
-      id: '/demo/start/ssr/spa-mode'
-      path: '/demo/start/ssr/spa-mode'
-      fullPath: '/demo/start/ssr/spa-mode'
-      preLoaderRoute: typeof DemoStartSsrSpaModeRouteImport
+    '/sign-in/': {
+      id: '/sign-in/'
+      path: '/sign-in'
+      fullPath: '/sign-in/'
+      preLoaderRoute: typeof SignInIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/ssr/full-ssr': {
-      id: '/demo/start/ssr/full-ssr'
-      path: '/demo/start/ssr/full-ssr'
-      fullPath: '/demo/start/ssr/full-ssr'
-      preLoaderRoute: typeof DemoStartSsrFullSsrRouteImport
+    '/sign-in/check': {
+      id: '/sign-in/check'
+      path: '/sign-in/check'
+      fullPath: '/sign-in/check'
+      preLoaderRoute: typeof SignInCheckRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/ssr/data-only': {
-      id: '/demo/start/ssr/data-only'
-      path: '/demo/start/ssr/data-only'
-      fullPath: '/demo/start/ssr/data-only'
-      preLoaderRoute: typeof DemoStartSsrDataOnlyRouteImport
+    '/listing/$slug/': {
+      id: '/listing/$slug/'
+      path: '/listing/$slug'
+      fullPath: '/listing/$slug/'
+      preLoaderRoute: typeof ListingSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/listing/$slug/change': {
+      id: '/listing/$slug/change'
+      path: '/listing/$slug/change'
+      fullPath: '/listing/$slug/change'
+      preLoaderRoute: typeof ListingSlugChangeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/listing/$slug/claim': {
+      id: '/listing/$slug/claim'
+      path: '/listing/$slug/claim'
+      fullPath: '/listing/$slug/claim'
+      preLoaderRoute: typeof ListingSlugClaimRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/listing/$slug/history': {
+      id: '/listing/$slug/history'
+      path: '/listing/$slug/history'
+      fullPath: '/listing/$slug/history'
+      preLoaderRoute: typeof ListingSlugHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -298,17 +298,17 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
-  CompassCommunityRoute: CompassCommunityRoute,
-  EventsRoute: EventsRoute,
-  SubmitRoute: SubmitRoute,
-  DemoApiNamesRoute: DemoApiNamesRoute,
-  DemoStartApiRequestRoute: DemoStartApiRequestRoute,
-  DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
-  DemoStartSsrDataOnlyRoute: DemoStartSsrDataOnlyRoute,
-  DemoStartSsrFullSsrRoute: DemoStartSsrFullSsrRoute,
-  DemoStartSsrSpaModeRoute: DemoStartSsrSpaModeRoute,
-  DemoStartSsrIndexRoute: DemoStartSsrIndexRoute,
+  AddRoute: AddRoute,
+  ComingUpRoute: ComingUpRoute,
+  MeRoute: MeRoute,
+  ModerateRoute: ModerateRoute,
+  SearchRoute: SearchRoute,
+  SignInCheckRoute: SignInCheckRoute,
+  SignInIndexRoute: SignInIndexRoute,
+  ListingSlugChangeRoute: ListingSlugChangeRoute,
+  ListingSlugClaimRoute: ListingSlugClaimRoute,
+  ListingSlugHistoryRoute: ListingSlugHistoryRoute,
+  ListingSlugIndexRoute: ListingSlugIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
